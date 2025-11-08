@@ -9,7 +9,7 @@ dotenv.config();
 const app = express();
 
 // Show backend URL in console
-console.log(`Backend running at: ${process.env.BACKEND_URL}`);
+console.log(`Backend running at: ${process.env.VITE_BACKEND_URL}`);
 
 // CORS setup
 const allowedOrigins = [
