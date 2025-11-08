@@ -28,7 +28,7 @@ const commentPost = async ({ postId, userId, comment }) => {
   return res.json();
 };
 
-const News = () => {
+const News = ({id}) => {
   const queryClient = useQueryClient();
   const [commentBoxes, setCommentBoxes] = useState({});
   const [commentTexts, setCommentTexts] = useState({});
@@ -68,26 +68,34 @@ const News = () => {
   if (isError) return <div className="text-center text-red-600">{error.message}</div>;
 
   return (
-    <section className="py-16 px-4 bg-gray-100">
+    <section id={id} className="py-16 px-4 bg-gray-100">
       <h2 className="text-4xl font-bold text-center mb-10">
         Latest <span className="text-orange-500">News</span>
-
       </h2>
       <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
         {todos.map((post) => {
-          const imageUrl = post.img || 'https://via.placeholder.com/400x300';
+          const imageUrl = post.img || "https://via.placeholder.com/400x300";
           const likeCount = Array.isArray(post.likes) ? post.likes.length : 0;
-          const commentCount = Array.isArray(post.comments) ? post.comments.length : 0;
+          const commentCount = Array.isArray(post.comments)
+            ? post.comments.length
+            : 0;
           const isCommentOpen = commentBoxes[post._id];
-          const commentInput = commentTexts[post._id] || '';
+          const commentInput = commentTexts[post._id] || "";
 
           const created = new Date(post.createdAt);
           const day = created.getDate();
-          const month = created.toLocaleString('default', { month: 'short' });
+          const month = created.toLocaleString("default", { month: "short" });
 
           return (
-            <div key={post._id} className="bg-white rounded shadow hover:shadow-xl transition">
-              <img src={imageUrl} alt="Post" className="w-full h-64 object-cover" />
+            <div
+              key={post._id}
+              className="bg-white rounded shadow hover:shadow-xl transition"
+            >
+              <img
+                src={imageUrl}
+                alt="Post"
+                className="w-full h-64 object-cover"
+              />
               <div className="p-6">
                 <div className="flex gap-4 mb-4 items-center">
                   <div className="bg-orange-500 text-white px-4 py-2 text-center rounded">
@@ -100,7 +108,9 @@ const News = () => {
                 <div className="flex gap-6 text-sm text-gray-600 mb-3 cursor-pointer">
                   <p
                     className="flex items-center gap-1 hover:text-red-500"
-                    onClick={() => likeMutation.mutate({ postId: post._id, userId })}
+                    onClick={() =>
+                      likeMutation.mutate({ postId: post._id, userId })
+                    }
                   >
                     <FaHeart className="text-red-500" /> {likeCount} Likes
                   </p>
@@ -113,7 +123,9 @@ const News = () => {
                   </p>
                 </div>
 
-                <p className="text-sm text-gray-700 mb-4">{post.desc || 'No description'}</p>
+                <p className="text-sm text-gray-700 mb-4">
+                  {post.desc || "No description"}
+                </p>
 
                 {isCommentOpen && (
                   <div className="space-y-4">
@@ -144,7 +156,8 @@ const News = () => {
                       <div className="space-y-2 text-sm text-gray-800">
                         {post.comments.slice(-3).map((c, idx) => (
                           <div key={idx} className="bg-gray-100 p-2 rounded">
-                            <span className="font-medium">{c.userId}:</span> {c.text}
+                            <span className="font-medium">{c.userId}:</span>{" "}
+                            {c.text}
                           </div>
                         ))}
                       </div>

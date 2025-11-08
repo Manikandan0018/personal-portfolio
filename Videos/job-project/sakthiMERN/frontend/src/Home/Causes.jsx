@@ -52,7 +52,7 @@ const causes = [
 ];
 
 
-const Causes = () => {
+const Causes = ({ id }) => {
   const scrollRef = useRef(null);
 
   const scroll = (direction) => {
@@ -65,14 +65,14 @@ const Causes = () => {
   };
 
   return (
-    <div className="py-16 px-4 max-w-7xl mx-auto">
+    <div id={id} className="py-16 px-4 max-w-7xl mx-auto">
       <h2 className="text-center text-3xl font-bold text-gray-800">
         Our <span className="text-orange-500">Causes</span>
       </h2>
       <p className="text-center text-gray-500 max-w-xl mx-auto mt-2">
-  Be the reason someone smiles today. Together, we can bring hope to the forgotten corners of the world.
-</p>
-
+        Be the reason someone smiles today. Together, we can bring hope to the
+        forgotten corners of the world.
+      </p>
 
       <div className="relative mt-12">
         <button
@@ -97,25 +97,24 @@ const Causes = () => {
                   alt={cause.title}
                   className="h-64 w-full object-cover"
                 />
-                <div className="absolute bottom-0 left-0 w-full bg-orange-500 h-2">
-                  
-                </div>
+                <div className="absolute bottom-0 left-0 w-full bg-orange-500 h-2"></div>
               </div>
 
               <div className="p-4">
                 <h3 className="font-semibold text-lg text-gray-800 mb-2">
                   {cause.title}
                 </h3>
-                <p className="text-sm text-gray-500 mb-4">{cause.description}</p>
-
-               
+                <p className="text-sm text-gray-500 mb-4">
+                  {cause.description}
+                </p>
 
                 <div className="flex items-center justify-between">
                   <button className="bg-orange-500 text-white px-4 py-2 text-sm rounded hover:bg-orange-600">
                     Donate
                   </button>
                   <p className="text-gray-500 flex items-center gap-1 text-sm">
-                    <FaHeart className="text-orange-500" /> {cause.donors} Donors
+                    <FaHeart className="text-orange-500" /> {cause.donors}{" "}
+                    Donors
                   </p>
                 </div>
               </div>

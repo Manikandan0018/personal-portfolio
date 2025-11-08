@@ -1,7 +1,7 @@
 import { Copy, CheckCircle2 } from 'lucide-react';
 import { useState } from 'react';
 
-const DonatePage = () => {
+const DonatePage = ({id}) => {
   const bankDetails = {
     bank: 'State Bank of India',
     branch: 'Tiruchirappalli Town (01312)',
@@ -18,7 +18,7 @@ const DonatePage = () => {
   };
 
   return (
-    <section className=" py-14 px-4">
+    <section id={id} className=" py-14 px-4">
       <div className="max-w-5xl mx-auto bg-white shadow-2xl rounded-3xl p-6 md:p-12 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-24 h-24 bg-orange-100 rounded-bl-full" />
         <div className="text-center mb-8">
@@ -26,7 +26,13 @@ const DonatePage = () => {
             🪔 Donate Joy This Deepawali!
           </h2>
           <p className="text-gray-700 text-lg max-w-2xl mx-auto leading-relaxed">
-            Help <span className="font-bold text-orange-500">18 SIGARAM students</span> celebrate Deepawali with dignity. Your donation of <span className="font-semibold">₹1000 per child</span> buys them new festive clothing. Let’s light up their lives together!
+            Help{" "}
+            <span className="font-bold text-orange-500">
+              18 SIGARAM students
+            </span>{" "}
+            celebrate Deepawali with dignity. Your donation of{" "}
+            <span className="font-semibold">₹1000 per child</span> buys them new
+            festive clothing. Let’s light up their lives together!
           </p>
         </div>
 
@@ -38,38 +44,40 @@ const DonatePage = () => {
               onClick={() => navigator.clipboard.writeText(`INR ${amt}`)}
               className="bg-orange-100 hover:bg-orange-200 text-orange-700 px-5 py-2 rounded-full text-sm font-semibold transition shadow"
             >
-              ₹{amt} for {amt / 1000} student{amt > 1000 ? 's' : ''}
+              ₹{amt} for {amt / 1000} student{amt > 1000 ? "s" : ""}
             </button>
           ))}
         </div>
 
         {/* Bank Details */}
         <div className="bg-orange-50 border border-orange-200 p-6 rounded-xl shadow-sm space-y-4">
-          <h4 className="text-xl font-semibold text-orange-600 mb-3">💳 Bank Account Details</h4>
+          <h4 className="text-xl font-semibold text-orange-600 mb-3">
+            💳 Bank Account Details
+          </h4>
           <div className="grid gap-4 md:grid-cols-2">
             <DetailRow
               label="A/c Number"
               value={bankDetails.AccountNumber}
-              copied={copiedField === 'type'}
-              onCopy={() => handleCopy(bankDetails.accountType, 'type')}
+              copied={copiedField === "type"}
+              onCopy={() => handleCopy(bankDetails.accountType, "type")}
             />
             <DetailRow
               label="Bank"
               value={bankDetails.bank}
-              copied={copiedField === 'bank'}
-              onCopy={() => handleCopy(bankDetails.bank, 'bank')}
+              copied={copiedField === "bank"}
+              onCopy={() => handleCopy(bankDetails.bank, "bank")}
             />
             <DetailRow
               label="Branch"
               value={bankDetails.branch}
-              copied={copiedField === 'branch'}
-              onCopy={() => handleCopy(bankDetails.branch, 'branch')}
+              copied={copiedField === "branch"}
+              onCopy={() => handleCopy(bankDetails.branch, "branch")}
             />
             <DetailRow
               label="IFSC Code"
               value={bankDetails.ifsc}
-              copied={copiedField === 'ifsc'}
-              onCopy={() => handleCopy(bankDetails.ifsc, 'ifsc')}
+              copied={copiedField === "ifsc"}
+              onCopy={() => handleCopy(bankDetails.ifsc, "ifsc")}
             />
           </div>
         </div>
@@ -89,12 +97,19 @@ const DonatePage = () => {
 
         {/* Thank You + CTA */}
         <div className="text-center mt-10">
-          <p className="text-gray-600 italic">“The smallest act of kindness is worth more than the grandest intention.”</p>
-          <p className="font-semibold text-orange-500 mt-2 mb-4">With love,<br />FOH Team</p>
+          <p className="text-gray-600 italic">
+            “The smallest act of kindness is worth more than the grandest
+            intention.”
+          </p>
+          <p className="font-semibold text-orange-500 mt-2 mb-4">
+            With love,
+            <br />
+            FOH Team
+          </p>
 
-           <p className="text-lg text-green-700 font-medium mb-2">
-    🎁 Thank you for your contribution. You're lighting up lives!
-  </p>
+          <p className="text-lg text-green-700 font-medium mb-2">
+            🎁 Thank you for your contribution. You're lighting up lives!
+          </p>
         </div>
       </div>
     </section>

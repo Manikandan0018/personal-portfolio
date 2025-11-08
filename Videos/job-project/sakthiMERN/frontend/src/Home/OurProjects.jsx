@@ -68,13 +68,16 @@ const projects = [
   }
 ];
 
-const OurProject = () => {
+const OurProject = ({id}) => {
   return (
-    <section className="py-16 px-4 bg-gradient-to-b bg-black">
+    <section id={id} className="py-16 px-4 bg-gradient-to-b bg-black">
       <div className="max-w-6xl mx-auto text-center mb-12">
-        <h2 className="text-4xl font-bold text-orange-600 mb-4">🌟 Our Contributing Projects</h2>
+        <h2 className="text-4xl font-bold text-orange-600 mb-4">
+          🌟 Our Contributing Projects
+        </h2>
         <p className="text-white text-lg max-w-2xl mx-auto">
-          Each project is a heartfelt step towards making lives better. Join us in transforming compassion into action.
+          Each project is a heartfelt step towards making lives better. Join us
+          in transforming compassion into action.
         </p>
       </div>
 
@@ -89,7 +92,9 @@ const OurProject = () => {
               <h3 className="text-2xl font-bold">{project.title}</h3>
             </div>
             <p className="italic mb-2">“{project.motto}”</p>
-            <p className="text-sm font-medium mb-4">Mode: <span className="font-normal">{project.mode}</span></p>
+            <p className="text-sm font-medium mb-4">
+              Mode: <span className="font-normal">{project.mode}</span>
+            </p>
             <ul className="list-disc list-inside space-y-1 text-sm text-white/90">
               {project.norms.map((n, i) => (
                 <li key={i}>✓ {n}</li>
